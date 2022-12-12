@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         passengerCars lada = new passengerCars("Lada", "Granta", 1.5, TypeOfBody.CROSSOVER);
@@ -7,6 +10,10 @@ public class Main {
         lada.pitStop();
         lada.bestLapTime();
         lada.maxSpeed();
+        lada.addDriver(new categoryB<>("Павел Дуров"));
+        lada.addMechanic(new Mechanic<passengerCars>("Пётр", "Ивонович", "DRIVE"));
+        System.out.println();
+
         passengerCars bmw = new passengerCars("BMW", "Z8", 3.0, TypeOfBody.HATCHBACK);
         System.out.println(bmw);
         bmw.startMovement();
@@ -91,13 +98,55 @@ public class Main {
         System.out.println();
 
 
-        categoryB <passengerCars> auto1 = new categoryB<>("Павел Дуров");
+        categoryB<passengerCars> auto1 = new categoryB<>("Павел Дуров");
         auto1.categoryB(bmw);
 
-        categoryC <Trucks> auto2 = new categoryC<>("Джордж Вашингтон");
+        categoryC<Trucks> auto2 = new categoryC<>("Джордж Вашингтон");
         auto2.categoryC(nissan);
 
-        categoryD <Bus> auto3 = new categoryD<>("Моргенштерн");
+        categoryD<Bus> auto3 = new categoryD<>("Моргенштерн");
         auto3.categoryD(wolkswagen);
+
+        List<Car> cars = List.of(lada, bmw, audi, kia, volvo, nissan, jac, ford,
+                ikarus, mercedes, zil, wolkswagen);
+
+        for (Car car : cars) {
+            printInfo(car);
+        }
+      example();
+    }
+
+    private static void printInfo(Car car) {
+        System.out.println("Информация по автомобилю " + car.getBrand() + " " + car.getModel());
+        System.out.println("Водители:");
+        for (Driver driver : car.getDrivers()) {
+            System.out.println(driver.getFIO());
+        }
+
+        System.out.println("Спонсоры:");
+        for (Sponsor sponsor : car.getSponsors()) {
+            System.out.println(sponsor.getName());
+            System.out.println();
+            System.out.println("Механики:");
+            for (Mechanic mechanic : car.getMechanics()) {
+                System.out.println(mechanic.getName() + " " + mechanic.getSurname());
+            }
+        }
+    }
+    private static void example() {
+        List<List<String >> biDemArrList = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            biDemArrList.add(i, new ArrayList<>());
+            for (int j = 0; j < 8; j++) {
+                biDemArrList.get(i).add(j, (i + j) % 2 == 1? "●" : "◯");
+            }
+        }
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                System.out.print(biDemArrList.get(i).get(j) + " ");
+            }
+            System.out.println();
+        }
     }
 }
