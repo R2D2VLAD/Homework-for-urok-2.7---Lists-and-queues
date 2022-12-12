@@ -28,6 +28,11 @@ public class Trucks extends Car implements Competing {
         return false;
     }
 
+    @Override
+    public void repair() {
+        System.out.println("Грузовик " + getBrand() + " " + getModel() + " починен!");
+    }
+
     public void startMovement() {
         System.out.println("Поехали!");
     }

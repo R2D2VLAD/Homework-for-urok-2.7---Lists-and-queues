@@ -38,6 +38,11 @@ public class passengerCars extends Car implements Competing { // легковы�
     }
 
     @Override
+    public void repair() {
+        System.out.println("Машина " + getBrand() + " " + getModel() + " починена!");
+    }
+
+    @Override
     public void pitStop() {
         System.out.println("I'm going to the pit stop");
     }
